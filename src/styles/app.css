@@ -1,0 +1,290 @@
+@font-face {
+  font-family: 'Salesforce Sans';
+  src: url("../fonts/SalesforceSans-Regular.ttf"); }
+
+#root {
+  height: 100%; }
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: none; }
+
+html, body {
+  height: 100%;
+  font-family: 'Salesforce Sans', 'Open Sans', sans-serif;
+  color: #3e3e3c; }
+
+input, select, textarea, button, a {
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box; }
+
+textarea {
+  -webkit-overflow-scrolling: touch; }
+
+body {
+  zoom: 1;
+  position: relative;
+  width: 100; }
+
+a {
+  color: #3e3e3c; }
+  a img {
+    outline-color: none; }
+  a:hover {
+    text-decoration: none; }
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300; }
+
+.fullHeight {
+  height: 100%; }
+
+.app-container {
+  margin: 130px 20px 20px 20px;
+  height: calc(100% + 90px); }
+
+.app-container-card {
+  min-width: 1080px;
+  height: 100%; }
+
+.map-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%; }
+
+.right-panel {
+  width: 35%;
+  padding-left: 20px; }
+  .right-panel .slds-card {
+    max-width: 500px;
+    min-width: 350px; }
+
+.tree {
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: visible;
+  width: 100%; }
+
+.parent-level, .child-level .child-container {
+  border: 1px solid #D8DDE6;
+  background: #F4F6F9;
+  padding: 1rem 1rem 0 1rem;
+  border-radius: 4px;
+  width: 195px; }
+
+.parent-level {
+  position: relative; }
+
+.child-level {
+  position: absolute;
+  left: 15rem; }
+
+.child-level:not(:first-child) {
+  top: 0; }
+  .child-level:not(:first-child):before {
+    position: absolute;
+    content: "";
+    width: 2.4rem;
+    border-top: 2px solid #ABB7C5;
+    left: -4.5rem;
+    top: 2rem; }
+
+.child-level .child-container {
+  position: relative;
+  margin-bottom: 20px; }
+  .child-level .child-container:before {
+    position: absolute;
+    content: "";
+    width: 2.2rem;
+    border-top: 2px solid #ABB7C5;
+    left: -2.2rem;
+    top: 1.91rem; }
+  .child-level .child-container .container-header {
+    display: flex;
+    text-transform: capitalize;
+    position: relative;
+    padding-bottom: 12px; }
+    .child-level .child-container .container-header h4 {
+      font-size: 16px;
+      margin-left: 8px; }
+    .child-level .child-container .container-header.collapse-header:after {
+      content: none; }
+
+.child-level .child-container .container-header:after {
+  position: absolute;
+  content: "";
+  height: 144%;
+  border-left: 2px solid #ABB7C5;
+  left: -3.2rem;
+  top: 1rem; }
+
+.branch {
+  position: relative; }
+  .branch:before {
+    position: absolute;
+    content: "";
+    width: 3.2rem;
+    border-top: 2px solid #ABB7C5;
+    left: -3.2rem;
+    top: 1.9rem; }
+  .branch:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    border-left: 2px solid #ABB7C5;
+    left: -3.2rem;
+    top: 2rem; }
+
+.last-node:after {
+  content: none; }
+
+.child-level .child-container:first-of-type .branch:last-child:after {
+  height: 160%; }
+
+.first-branch:before {
+  content: none; }
+
+.first-branch:after {
+  content: none; }
+
+.node {
+  padding-bottom: 12px; }
+
+.first-node {
+  padding-bottom: 12px; }
+
+.node-button {
+  display: flex;
+  width: 10rem;
+  position: relative;
+  height: 4rem;
+  padding: .75rem .5rem;
+  background: #ffffff;
+  border: #E0E5EE 1px solid;
+  border-radius: 4px; }
+  .node-button .slds-icon_container {
+    height: 18px;
+    width: 18px;
+    vertical-align: middle; }
+  .node-button svg {
+    vertical-align: top; }
+  .node-button .node-name {
+    font-size: 14px; }
+  .node-button .node-role {
+    font-size: 12px;
+    color: #ABB7C5;
+    display: block; }
+
+.node.active .node-button {
+  border: #0070d2 1px solid;
+  box-shadow: 0px 0px 5px 0px #0070d2; }
+
+.slds-button.circle-button-edit, .slds-button.circle-button-add, .slds-button.circle-button-extender {
+  border-radius: 50%;
+  text-align: center;
+  top: -12px;
+  width: 1.5rem;
+  height: 1.5rem;
+  z-index: 5;
+  padding: 0; }
+  .slds-button.circle-button-edit svg, .slds-button.circle-button-add svg, .slds-button.circle-button-extender svg {
+    position: absolute;
+    width: .7rem;
+    height: .7rem;
+    left: -6px;
+    top: -13px;
+    fill: #0070D2; }
+  .slds-button.circle-button-edit span, .slds-button.circle-button-add span, .slds-button.circle-button-extender span {
+    position: relative; }
+
+.slds-button.circle-button-edit {
+  border: 1px solid #0070D2;
+  left: 105px; }
+
+.slds-button.circle-button-add {
+  border: 1px solid #0070D2;
+  left: 135px; }
+
+.slds-button.circle-button-extender {
+  top: 50%;
+  transform: translateY(-50%);
+  right: -10px;
+  line-height: 1; }
+
+.right-panel .slds-media__figure {
+  margin-right: 0; }
+
+.card-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .card-data .info {
+    width: 45%; }
+    .card-data .info span {
+      padding-top: 0; }
+
+.slds-form-element__label {
+  font-size: 12px;
+  color: #706E6B; }
+
+.slds-form-element__static {
+  font-size: 13px;
+  padding-top: 0; }
+
+.card-team {
+  width: 100%; }
+  .card-team .slds-form-element__label {
+    font-size: 14px;
+    color: #0076E0; }
+  .card-team .slds-form-element__static {
+    font-size: 12px;
+    padding: 0; }
+
+.team-container {
+  display: flex;
+  margin-bottom: 8px; }
+
+.map-popOver {
+  left: 115%;
+  top: 10%; }
+  .map-popOver .slds-popover {
+    width: 14rem; }
+  .map-popOver .slds-popover__body {
+    padding: 32px 16px 26px 16px; }
+
+.map-popOver-row {
+  display: flex;
+  justify-content: space-between; }
+  .map-popOver-row:not(:first-child) {
+    margin-top: 20px; }
+  .map-popOver-row .number {
+    font-weight: bold; }
+
+.map-popOver-media {
+  display: flex; }
+
+.hide {
+  opacity: 0; }
+
+.crud-hide {
+  display: none; }
+
+.slds-icon-standard-contact {
+  background-color: #00D2BE !important; }
+
+.fill-white svg {
+  fill: #fff; }
+
+.slds-button_neutral {
+  text-align: left; }
+
+.child-level .child-level .child-container:last-child .branch:last-child:after {
+  height: 0; }
+
+.first-branch > .child-level > .child-container:last-child > div > .branch:last-child:after {
+  height: 0; }
