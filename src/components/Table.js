@@ -13,7 +13,6 @@ class Table extends Component {
 
   handleDialog() {
     this.setState((prevState) => {
-      console.log('handle dialog')
       return { showDialog: !prevState.showDialog };
     });
   }

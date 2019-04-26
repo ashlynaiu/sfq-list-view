@@ -10,20 +10,15 @@ class Dialog extends Component {
     document.addEventListener('mousedown', this.handleClick, false);
   }
 
-  componentWillUnmount(){
-    console.log('I unmounted')
-    document.removeEventListener('mousedown', this.handClick, false);
-    return;
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick);
   }
 
   handleClick = (e) => {
-    //ToDo dismount component and function properly
-    if(this.node !== null) {
-      if (this.node.contains(e.target)) {
-        return;
-      }
-      this.handleClickOutside();
+    if (this.node.contains(e.target)) {
+      return;
     }
+    this.handleClickOutside();
   }
 
   handleClickOutside() {

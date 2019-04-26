@@ -31,12 +31,10 @@ body {
 
 a {
   color: #3e3e3c; }
-
-a img {
-  outline-color: none; }
-
-a:hover {
-  text-decoration: none; }
+  a img {
+    outline-color: none; }
+  a:hover {
+    text-decoration: none; }
 
 p {
   font-size: 16px;
@@ -45,9 +43,8 @@ p {
 
 table.listview {
   font-size: 14px; }
-
-table.listview th, table.listview td {
-  padding: 8px; }
+  table.listview th, table.listview td {
+    padding: 8px; }
 
 .slds-th__action {
   padding: 0;
