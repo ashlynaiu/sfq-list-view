@@ -6,8 +6,11 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.handleDialog = this.handleDialog.bind(this);
+    this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.state = {
-			showDialog: false
+      showDialog: false,
+      name: 'Acme',
+      edited: false
 		}
   }
 
@@ -17,10 +20,18 @@ class Table extends Component {
     });
   }
 
+  handleInputUpdate(inputValue) {
+    return this.setState({
+      name: inputValue,
+      edited: true
+    });
+  }
+
   render() {
+    let isEdited = this.state.edited ? 'slds-is-edited' : '';
+
     return (
-      <div className="">
-        <div className="slds-table_edit_container slds-is-relative">
+      <div className="slds-table_edit_container slds-is-relative">
         <table aria-multiselectable="true" className="slds-table slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols listview" role="grid">
           <thead>
             <tr className="slds-line-height_reset">
@@ -155,15 +166,15 @@ class Table extends Component {
                   </button>
                 </span>
               </th>
-              <td aria-selected="true" className="slds-cell-edit" role="gridcell">
+              <td aria-selected="true" className={`slds-cell-edit ${isEdited}`} role="gridcell">
                 <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title="Acme">Acme</span>
+                  <span className="slds-truncate" title={this.state.name}>{this.state.name}</span>
                   <button onClick={this.handleDialog} className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Account Name of Acme - 1,200 Widgets">
                     <Icon object="edit" type="utility" size="x-small" editable={true} />
                     <span className="slds-assistive-text">Edit Account Name of Acme - 1,200 Widgets</span>
                   </button>
                 </span>
-                {this.state.showDialog ? <Dialog handleDialog={this.handleDialog}/> : null}
+                {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.name} handleInputUpdate={this.handleInputUpdate} /> : null}
               </td>
               <td className="slds-cell-edit" role="gridcell">
                 <span className="slds-grid slds-grid_align-spread">
@@ -213,7 +224,6 @@ class Table extends Component {
             </tr>
           </tbody>
         </table>
-      </div>
       </div>
     )
   }
