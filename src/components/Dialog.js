@@ -50,7 +50,7 @@ class Dialog extends Component {
               <span className="slds-assistive-text">Company</span>
             </label>
             <div className="slds-form-element__control slds-grow">
-              <input className="slds-input" id="company-01" required="" type="text" value={this.props.data} onChange={this.handleUpdate} onKeyPress={this.onKeyPress}/>
+              <input className="slds-input" id="company-01" required="" type="text" defaultValue={this.state.inputValue} onChange={this.handleUpdate} onKeyPress={this.onKeyPress}/>
             </div>
           </div>
         </div>

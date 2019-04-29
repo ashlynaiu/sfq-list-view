@@ -1,35 +1,18 @@
 import React, { Component } from 'react';
 import Icon from './Icon';
-import Dialog from './Dialog';
+import Row from './Row';
+import data from './../model';
 
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.handleDialog = this.handleDialog.bind(this);
-    this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.state = {
-      showDialog: false,
-      name: 'Acme',
-      edited: false
+      opportunities: data
 		}
   }
 
-  handleDialog() {
-    this.setState((prevState) => {
-      return { showDialog: !prevState.showDialog };
-    });
-  }
-
-  handleInputUpdate(inputValue) {
-    return this.setState({
-      name: inputValue,
-      edited: true
-    });
-  }
-
   render() {
-    let isEdited = this.state.edited ? 'slds-is-edited' : '';
-
+    const opportunities = this.state.opportunities;
     return (
       <div className="slds-table_edit_container slds-is-relative">
         <table aria-multiselectable="true" className="slds-table slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols listview" role="grid">
@@ -157,71 +140,13 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr aria-selected="false" className="slds-hint-parent">
-              <th className="slds-cell-edit" scope="row">
-                <span className="slds-grid slds-grid_align-spread"><a className="slds-truncate" href="javascript:void(0);" id="link-01"  tabIndex="0" title="Acme - 1,200 Widgets">Acme - 1,200 Widgets</a>
-                  <button className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Name of Acme - 1,200 Widgets">
-                    <Icon object="edit" type="utility" size="x-small" editable={true} />
-                    <span className="slds-assistive-text">Edit Name of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-              </th>
-              <td aria-selected="true" className={`slds-cell-edit ${isEdited}`} role="gridcell">
-                <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title={this.state.name}>{this.state.name}</span>
-                  <button onClick={this.handleDialog} className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Account Name of Acme - 1,200 Widgets">
-                    <Icon object="edit" type="utility" size="x-small" editable={true} />
-                    <span className="slds-assistive-text">Edit Account Name of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-                {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.name} handleInputUpdate={this.handleInputUpdate} /> : null}
-              </td>
-              <td className="slds-cell-edit" role="gridcell">
-                <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title="4/10/15">4/10/15</span>
-                  <button className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Close Date of Acme - 1,200 Widgets">
-                    <Icon object="edit" type="utility" size="x-small" editable={true} />
-                    <span className="slds-assistive-text">Edit Close Date of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-              </td>
-              <td className="slds-cell-edit" role="gridcell">
-                <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title="Value Proposition">Value Proposition</span>
-                  <button className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Stage of Acme - 1,200 Widgets">
-                  <Icon object="edit" type="utility" size="x-small" editable={true} />
-                    <span className="slds-assistive-text">Edit Stage of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-              </td>
-              <td aria-readonly="true" className="slds-cell-edit" role="gridcell">
-                <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title="30%">30%</span>
-                  <button className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" disabled=""  tabIndex="0" title="Edit Confidence of Acme - 1,200 Widgets">
-                    <Icon object="edit" type="utility" size="x-small" editable={true} />
-                    <span className="slds-assistive-text">Edit Confidence of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-              </td>
-              <td className="slds-cell-edit" role="gridcell">
-                <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title="$25,000,000">$25,000,000</span>
-                  <button className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Amount of Acme - 1,200 Widgets">
-                    <Icon object="edit" type="utility" size="x-small" editable={true}/>
-                    <span className="slds-assistive-text">Edit Amount of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-              </td>
-              <td className="slds-cell-edit" role="gridcell">
-                <span className="slds-grid slds-grid_align-spread">
-                  <span className="slds-truncate" title="jrogers@acme.com">jrogers@acme.com</span>
-                  <button className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Contact of Acme - 1,200 Widgets">
-                    <Icon object="edit" type="utility" size="x-small" editable={true} />
-                    <span className="slds-assistive-text">Edit Contact of Acme - 1,200 Widgets</span>
-                  </button>
-                </span>
-              </td>
-            </tr>
+            {Object
+              .keys(opportunities)
+              .map(key => <Row
+                key={key}
+                index={key}
+                opportunity={opportunities[key]} />)
+            }
           </tbody>
         </table>
       </div>
