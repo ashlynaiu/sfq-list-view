@@ -5,7 +5,7 @@ class Dialog extends Component {
   constructor(props) {
     super(props);
     this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
     this.restoreValue = this.restoreValue.bind(this);
     this.state = {
@@ -15,6 +15,7 @@ class Dialog extends Component {
     }
   }
 
+  //update state needs fixing
   componentWillMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   }
@@ -23,6 +24,7 @@ class Dialog extends Component {
     document.removeEventListener('mousedown', this.handleClick);
   }
 
+  //Handle Clicking of Dialog to dismiss
   handleClick = (e) => {
     if (this.node.contains(e.target)) {
       return;
@@ -34,20 +36,11 @@ class Dialog extends Component {
     this.props.handleDialog();
   }
 
-  handleUpdate(event) {
-    if(event.target.value === '') {
-      this.handleError(event.target.value);
-    }
-    if(!this.state.edit) {
-      this.setState({ edited: true });
-    }
-    this.setState({ inputValue: event.target.value });
-    this.props.handleInputUpdate(event.target.value);
-  }
-
+  //Handle Enter to Submit
   onKeyPress = event => {
     if (event.key === 'Enter') {
-        this.handleClickOutside();
+      this.props.handleInputUpdate(event.target.value);
+      this.handleClickOutside(event.target.value);
     }
   }
 
@@ -55,6 +48,19 @@ class Dialog extends Component {
     this.props.errorCell(true);
     return this.setState({ error: true })
   }
+
+  //Handle onChange to update state to edited is ture
+  handleChange(event) {
+    if(event.target.value === '') {
+      this.handleError(event.target.value);
+    }
+    return this.setState({ 
+      edited: true,
+      inputValue: event.target.value
+    })
+  }
+
+  //Reset the component
   restoreValue() {
     this.setState({
       inputValue: this.props.storedData,
@@ -65,7 +71,6 @@ class Dialog extends Component {
   }
 
   render() {
-    console.log(this.state.error)
     let disableRestore = this.state.edited ? 'is-draft' : '';
 
     let errorWarning = ()=> {
@@ -84,7 +89,7 @@ class Dialog extends Component {
               <span className="slds-assistive-text">Company</span>
             </label>
             <div className="slds-form-element__control slds-grow slds-grid">
-              <input className="slds-input" id="company-01" required="" type="text" value={this.state.inputValue} onChange={this.handleUpdate} onKeyPress={this.onKeyPress}/>
+              <input className="slds-input" id="company-01" required="" type="text" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.onKeyPress}/>
               <button onClick={this.restoreValue} className={`listview-restore ${disableRestore}`} disabled={!this.state.edited}><Icon object="refresh" type="action" size="x-small" editable={true} /></button>
             </div>
             {this.state.error ? errorWarning() : ''}
