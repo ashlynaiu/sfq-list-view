@@ -13,6 +13,7 @@ class Cell extends Component {
     this.state = {
       showDialog: false,
       field: this.props.field,
+      locked: this.props.islocked,
       edited: false,
       error: false,
       focus: false
@@ -75,15 +76,25 @@ class Cell extends Component {
     let isEdited = this.state.edited ? 'slds-is-edited' : '';
     let isFocused = this.state.focus ? 'slds-has-focus' : '';
     let isError = this.state.error ? 'slds-has-error' : '';
+    let isLocked = this.state.locked ? 'cell-locked' : '';
 
-    return (
-      <td aria-selected="true" className={`slds-cell-edit ${isEdited} ${isFocused} ${isError}`} role="gridcell" onClick={this.manageFocus} ref={node => this.node = node }>
-      <span className="slds-grid slds-grid_align-spread">
-        <span className="slds-truncate" title={this.state.field}>{this.state.field}</span>
-        <button onClick={this.handleDialog} className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Account Name of Acme - 1,200 Widgets">
+    let renderEditButton = ()=> {
+      return(
+        <button onClick={this.handleDialog} className="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"  tabIndex="0" title="Edit Account Name of Acme - 1,200 Widgets"> 
           <Icon object="edit" type="utility" size="x-small" editable={true} />
           <span className="slds-assistive-text">Edit Account Name of Acme - 1,200 Widgets</span>
         </button>
+      )
+    }
+
+    let renderLock = ()=> {
+      return (<Icon object="lock" type="utility" size="x-small"/>)
+    }
+    return (
+      <td aria-selected="true" className={`slds-cell-edit ${isEdited} ${isFocused} ${isError} ${isLocked}`} role="gridcell" onClick={this.manageFocus} ref={node => this.node = node }>
+      <span className="slds-grid slds-grid_align-spread">
+        <span className="slds-truncate" title={this.state.field}>{this.state.field}</span>
+        {this.state.locked ? renderLock() : renderEditButton()}
       </span>
       {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
     </td>

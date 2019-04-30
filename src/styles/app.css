@@ -96,3 +96,9 @@ table.listview th a {
 
 .listview-edit .slds-form-element__label_edit {
   margin: 0; }
+
+.cell-locked svg {
+  opacity: 0; }
+
+.cell-locked:hover svg {
+  opacity: 1; }
