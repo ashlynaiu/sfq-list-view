@@ -146,8 +146,7 @@ class Table extends Component {
                 key={key}
                 index={key}
                 opportunity={opportunities[key]}
-                storedData={this.state.storedData[key]} 
-                handleSyncState={this.props.handleSyncState} />)
+                storedData={this.state.storedData[key]}  />)
             }
           </tbody>
         </table>

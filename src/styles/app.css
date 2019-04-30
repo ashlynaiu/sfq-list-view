@@ -29,10 +29,12 @@ body {
 
 a {
   color: #3e3e3c; }
-  a img {
-    outline-color: none; }
-  a:hover {
-    text-decoration: none; }
+
+a img {
+  outline-color: none; }
+
+a:hover {
+  text-decoration: none; }
 
 p {
   font-size: 16px;
@@ -60,11 +62,14 @@ table.listview {
   font-size: 14px;
   margin-top: 8px;
   border-right: 1px solid #dddbda;
-  border-left: 1px solid #dddbda; }
-  table.listview td {
-    padding: 8px; }
-  table.listview th a {
-    padding: 8px; }
+  border-left: 1px solid #dddbda;
+  overflow: hidden; }
+
+table.listview td {
+  padding: 8px; }
+
+table.listview th a {
+  padding: 8px; }
 
 .slds-th__action {
   padding: 0;
@@ -77,11 +82,15 @@ table.listview {
   border-radius: 0;
   border: 0;
   z-index: 6000; }
-  .listview-edit .listview-restore {
-    margin-left: 8px; }
-    .listview-edit .listview-restore svg {
-      fill: LightGray; }
-  .listview-edit .is-draft .slds-icon_container svg {
-    fill: black; }
-  .listview-edit .slds-form-element__label_edit {
-    margin: 0; }
+
+.listview-edit .listview-restore {
+  margin-left: 8px; }
+
+.listview-edit .listview-restore svg {
+  fill: LightGray; }
+
+.listview-edit .is-draft .slds-icon_container svg {
+  fill: black; }
+
+.listview-edit .slds-form-element__label_edit {
+  margin: 0; }

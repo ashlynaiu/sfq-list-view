@@ -13,7 +13,6 @@ class Row extends Component {
               index={key}
               field={fields[key]}
               storedData={this.props.storedData[key]}
-              handleSyncState={this.props.handleSyncState}
               />)
           }
         </tr>

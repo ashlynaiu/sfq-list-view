@@ -9,6 +9,7 @@ class Cell extends Component {
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.manageFocus = this.manageFocus.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.errorCell = this.errorCell.bind(this);
     this.state = {
       showDialog: false,
       field: this.props.field,
@@ -24,11 +25,12 @@ class Cell extends Component {
     });
   }
 
-  handleInputUpdate(inputValue) {
-    this.setState({
-      field: inputValue,
-      edited: true
-    });
+  handleInputUpdate(inputValue, edited) {
+    this.setState({ field: inputValue });
+    if(edited) {
+      return this.setState({ edited: false });
+    }
+    return this.setState({ edited: true });
   }
 
   manageFocus = (e) => {
@@ -41,7 +43,6 @@ class Cell extends Component {
       return toggleState();
     }
     //Turn focus off
-    this.props.handleSyncState('change', 1)
     document.removeEventListener('mousedown', this.handleClick);
     return toggleState();
   }
@@ -54,19 +55,15 @@ class Cell extends Component {
   }
 
   restoredCell() {
-    this.setState({ edited: false });
-    this.props.handleSyncState('change', -1)
-    return
+    return this.setState({ edited: false });
   }
 
-  errorCell() {
+  errorCell(value) {
     //Turn error state on
-    if(!this.state.error) {
-      this.props.handleSyncState('error', 1);
+    if(value) {
       return this.setState({ error: true});
     }
     //Turn off error state
-    this.props.handleSyncState('error', -1);
     return this.setState({ error: false});
   }
 
@@ -84,7 +81,7 @@ class Cell extends Component {
           <span className="slds-assistive-text">Edit Account Name of Acme - 1,200 Widgets</span>
         </button>
       </span>
-      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} haserror={this.state.error} /> : null}
+      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
     </td>
     )
   }
