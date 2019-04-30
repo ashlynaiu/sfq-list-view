@@ -58,12 +58,14 @@ p {
   display: inline;
   padding-right: 8px; }
 
+.listview-container .slds-resizable__divider {
+  height: 100%; }
+
 table.listview {
   font-size: 14px;
   margin-top: 8px;
   border-right: 1px solid #dddbda;
-  border-left: 1px solid #dddbda;
-  overflow: hidden; }
+  border-left: 1px solid #dddbda; }
 
 table.listview td {
   padding: 8px; }

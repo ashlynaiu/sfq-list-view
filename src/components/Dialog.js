@@ -10,7 +10,8 @@ class Dialog extends Component {
     this.restoreValue = this.restoreValue.bind(this);
     this.state = {
       inputValue: this.props.data,
-      edited: this.props.isDraft
+      edited: this.props.isDraft,
+      error: this.props.hasError
     }
   }
 
@@ -57,14 +58,15 @@ class Dialog extends Component {
   restoreValue() {
     this.setState({
       inputValue: this.props.storedData,
-      edited: false
+      edited: false,
+      error: false
     });
-    return this.props.handleInputUpdate(this.props.storedData, false);
+    return this.props.handleInputUpdate(this.props.storedData, true);
   }
 
   render() {
+    console.log(this.state.error)
     let disableRestore = this.state.edited ? 'is-draft' : '';
-    let hasError = this.state.error ? 'slds-has-error' : '';
 
     let errorWarning = ()=> {
       return (

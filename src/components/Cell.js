@@ -25,10 +25,11 @@ class Cell extends Component {
     });
   }
 
-  handleInputUpdate(inputValue, edited) {
+  handleInputUpdate(inputValue, restore) {
+    //passing true into restore variable will reset the cell
     this.setState({ field: inputValue });
-    if(edited) {
-      return this.setState({ edited: false });
+    if(restore) {
+      return this.restoredCell();
     }
     return this.setState({ edited: true });
   }
@@ -55,7 +56,10 @@ class Cell extends Component {
   }
 
   restoredCell() {
-    return this.setState({ edited: false });
+    return this.setState({ 
+      edited: false,
+      error: false
+    });
   }
 
   errorCell(value) {
@@ -81,7 +85,7 @@ class Cell extends Component {
           <span className="slds-assistive-text">Edit Account Name of Acme - 1,200 Widgets</span>
         </button>
       </span>
-      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
+      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
     </td>
     )
   }

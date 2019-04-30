@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Table from './components/Table';
-import Toolbar from './components/Toolbar';
 import Icon from './components/Icon';
 
 class App extends Component {
