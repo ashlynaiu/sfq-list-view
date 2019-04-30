@@ -7,10 +7,10 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      opportunities: data
+      opportunities: data,
+      storedData: data,
 		}
   }
-
   render() {
     const opportunities = this.state.opportunities;
     return (
@@ -145,7 +145,9 @@ class Table extends Component {
               .map(key => <Row
                 key={key}
                 index={key}
-                opportunity={opportunities[key]} />)
+                opportunity={opportunities[key]}
+                storedData={this.state.storedData[key]} 
+                handleSyncState={this.props.handleSyncState} />)
             }
           </tbody>
         </table>

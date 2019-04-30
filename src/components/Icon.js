@@ -37,7 +37,7 @@ class Icon extends Component {
 
         return (
             <span className={`slds-icon_container slds-icon-utility-${object} ${isSortable} ${isEditable}`} title="">
-                <svg className={`slds-icon slds-icon-text-default slds-icon_${size}`} aria-hidden="true">
+                <svg className={`slds-icon slds-icon-text-default slds-icon_${size} ${isSortable}`} aria-hidden="true">
                     <use xlinkHref={`${UtilityIcons}#${object}`}></use>
                 </svg>
             </span>

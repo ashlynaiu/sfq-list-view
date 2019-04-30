@@ -15,17 +15,15 @@
 	border-radius: none
 
 html, body
-	height: 100%
-	font-family: 'Salesforce Sans', 'Open Sans', sans-serif
-	color: #3e3e3c
+  background: white
+  height: 100%
+  font-family: 'Salesforce Sans', 'Open Sans', sans-serif
+  color: #3e3e3c
 
 input, select, textarea, button, a
 	outline: none
 	font-family: inherit
 	box-sizing: border-box
-
-textarea
-	-webkit-overflow-scrolling: touch
 
 body
 	zoom: 1
@@ -44,10 +42,32 @@ p
 	line-height: 24px
 	font-weight: 300
 
+.app
+  width: 70%
+  margin: 0 auto
+  padding-top: 80px
+
+.quip-icon
+  .slds-icon_x-small
+    width: .8rem
+    height: .8rem
+  svg
+    vertical-align: inherit
+
+.listview-container h2
+  font-size: 19px
+  display: inline
+  padding-right: 8px
+
 table.listview
   font-size: 14px
+  margin-top: 8px
+  border-right: 1px solid #dddbda
+  border-left: 1px solid #dddbda
 
-  th, td
+  td
+    padding: 8px
+  th a
     padding: 8px
 
 .slds-th__action
@@ -57,7 +77,20 @@ table.listview
 .listview-edit
   position: absolute
   top: 0px
-  left: 0.0625rem
+  left: 0.0rem
   border-radius: 0
   border: 0
   z-index: 6000
+
+  .listview-restore
+    margin-left: 8px
+
+    svg
+      fill: LightGray
+
+  .is-draft
+    .slds-icon_container svg
+      fill: black
+
+  .slds-form-element__label_edit
+    margin: 0

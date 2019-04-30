@@ -12,6 +12,7 @@
   border-radius: none; }
 
 html, body {
+  background: white;
   height: 100%;
   font-family: 'Salesforce Sans', 'Open Sans', sans-serif;
   color: #3e3e3c; }
@@ -20,9 +21,6 @@ input, select, textarea, button, a {
   outline: none;
   font-family: inherit;
   box-sizing: border-box; }
-
-textarea {
-  -webkit-overflow-scrolling: touch; }
 
 body {
   zoom: 1;
@@ -41,9 +39,31 @@ p {
   line-height: 24px;
   font-weight: 300; }
 
+.app {
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 80px; }
+
+.quip-icon .slds-icon_x-small {
+  width: .8rem;
+  height: .8rem; }
+
+.quip-icon svg {
+  vertical-align: inherit; }
+
+.listview-container h2 {
+  font-size: 19px;
+  display: inline;
+  padding-right: 8px; }
+
 table.listview {
-  font-size: 14px; }
-  table.listview th, table.listview td {
+  font-size: 14px;
+  margin-top: 8px;
+  border-right: 1px solid #dddbda;
+  border-left: 1px solid #dddbda; }
+  table.listview td {
+    padding: 8px; }
+  table.listview th a {
     padding: 8px; }
 
 .slds-th__action {
@@ -53,7 +73,15 @@ table.listview {
 .listview-edit {
   position: absolute;
   top: 0px;
-  left: 0.0625rem;
+  left: 0.0rem;
   border-radius: 0;
   border: 0;
   z-index: 6000; }
+  .listview-edit .listview-restore {
+    margin-left: 8px; }
+    .listview-edit .listview-restore svg {
+      fill: LightGray; }
+  .listview-edit .is-draft .slds-icon_container svg {
+    fill: black; }
+  .listview-edit .slds-form-element__label_edit {
+    margin: 0; }

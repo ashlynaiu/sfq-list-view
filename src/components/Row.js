@@ -11,7 +11,10 @@ class Row extends Component {
             .map(key => <Cell
               key={key}
               index={key}
-              field={fields[key]} />)
+              field={fields[key]}
+              storedData={this.props.storedData[key]}
+              handleSyncState={this.props.handleSyncState}
+              />)
           }
         </tr>
     )
