@@ -4,10 +4,11 @@ import Icon from './Icon';
 class Dialog extends Component {
   constructor(props) {
     super(props);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
+    //this.handleClickOutside = this.handleClickOutside.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
     this.restoreValue = this.restoreValue.bind(this);
+    this.commitChangetoCell = this.commitChangetoCell.bind(this);
     this.state = {
       inputValue: this.props.data,
       edited: this.props.isDraft,
@@ -15,7 +16,7 @@ class Dialog extends Component {
     }
   }
 
-  //update state needs fixing 
+  //Component Initalizes
   componentWillMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   }
@@ -25,28 +26,18 @@ class Dialog extends Component {
   }
 
   //Handle Clicking of Dialog to dismiss
-  handleClick = (e) => {
-    if (this.node.contains(e.target)) {
+  handleClick = (event) => {
+    if (this.node.contains(event.target)) {
       return;
     }
-    this.handleClickOutside();
-  }
-
-  handleClickOutside() {
-    this.props.handleDialog();
+    this.commitChangetoCell();
   }
 
   //Handle Enter to Submit
   onKeyPress = event => {
     if (event.key === 'Enter') {
-      this.props.handleInputUpdate(event.target.value);
-      this.handleClickOutside(event.target.value);
+      this.commitChangetoCell();
     }
-  }
-
-  handleError(value) {
-    this.props.errorCell(true);
-    return this.setState({ error: true })
   }
 
   //Handle onChange to update state to edited is ture
@@ -58,6 +49,17 @@ class Dialog extends Component {
       edited: true,
       inputValue: event.target.value
     })
+  }
+
+  //User is done making changes and needs to save to table cell
+  commitChangetoCell() {
+    this.props.handleInputUpdate(this.state.inputValue);
+    this.props.handleDialog();
+  }
+
+  handleError(value) {
+    this.props.errorCell(true);
+    return this.setState({ error: true })
   }
 
   //Reset the component
