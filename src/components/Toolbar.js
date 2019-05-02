@@ -28,22 +28,23 @@ class Toolbar extends Component {
       )
     }
 
-    let renderError = ()=>{
-      return (
-        <button>
-          Error
-        </button>
-      )
-    }
+    // let renderError = ()=>{
+    //   return (
+    //     <button>
+    //       Error
+    //     </button>
+    //   )
+    // }
 
     let renderSyncState = ()=>{
       if(tableState === 'sync') {
         return renderSynced();
       } else if(tableState === 'save') {
         return renderSync();
-      } else if(tableState === 'error') {
-        return renderError();
       }
+      // } else if(tableState === 'error') {
+      //   return renderError();
+      // }
     }
 
     return (

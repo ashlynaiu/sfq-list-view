@@ -15,7 +15,7 @@ class Dialog extends Component {
     }
   }
 
-  //update state needs fixing
+  //update state needs fixing 
   componentWillMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   }
@@ -85,7 +85,6 @@ class Dialog extends Component {
         <div className="slds-popover__body" id="dialog-body-id-4">
           <div className="slds-form-element slds-grid slds-wrap">
             <label className="slds-form-element__label slds-form-element__label_edit slds-no-flex" >
-              <abbr className="slds-required" title="required">*</abbr>
               <span className="slds-assistive-text">Company</span>
             </label>
             <div className="slds-form-element__control slds-grow slds-grid">

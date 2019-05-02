@@ -6,11 +6,18 @@ import data from './../model';
 class Table extends Component {
   constructor(props) {
     super(props);
+    // this.saveCounter = this.saveCounter.bind(this);
     this.state = {
       opportunities: data,
       storedData: data,
+      saveCount: 0
 		}
   }
+
+  // saveCounter(value) {
+  //   newCount = this.state.saveCount + value;
+  //   this.setState({ saveCount: newCount});
+  // }
   render() {
     const opportunities = this.state.opportunities;
     return (
@@ -146,7 +153,8 @@ class Table extends Component {
                 key={key}
                 index={key}
                 opportunity={opportunities[key]}
-                storedData={this.state.storedData[key]}  />)
+                storedData={this.state.storedData[key]}
+                saveCounter={this.saveCounter} />)
             }
           </tbody>
         </table>
