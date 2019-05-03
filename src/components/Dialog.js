@@ -45,7 +45,11 @@ class Dialog extends Component {
     if(event.target.value === '') {
       this.handleError(event.target.value);
     }
-    return this.setState({ 
+    if(this.state.error && event.target.value !== '') {
+      this.setState({ error: false });
+      this.props.errorCell(false);
+    }
+    return this.setState({
       edited: true,
       inputValue: event.target.value
     })
@@ -69,7 +73,8 @@ class Dialog extends Component {
       edited: false,
       error: false
     });
-    return this.props.handleInputUpdate(this.props.storedData, true);
+    this.props.handleInputUpdate(this.props.storedData, true);
+    return this.props.handleDialog();
   }
 
   render() {

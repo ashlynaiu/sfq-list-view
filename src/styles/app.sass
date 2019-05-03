@@ -18,7 +18,7 @@ html, body
   background: white
   height: 100%
   font-family: 'Salesforce Sans', 'Open Sans', sans-serif
-  color: #3e3e3c
+  color: #333333
 
 input, select, textarea, button, a
 	outline: none
@@ -41,6 +41,9 @@ p
 	font-size: 16px
 	line-height: 24px
 	font-weight: 300
+
+table, button
+  color: #333333
 
 .app
   width: 70%
@@ -105,3 +108,31 @@ table.listview
   &:hover svg
     opacity: 1
 
+.listview-toolbar
+  margin-bottom: 8px
+
+  button
+    border: 1px solid #DDDDDD
+    border-radius: 8px
+    padding: 4px 8px 4px 8px
+    font-size: 14px
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.10)
+    margin-right: 8px
+
+    svg
+      vertical-align: middle
+      margin-right: 6px
+      width: .9rem
+
+    &.button-disabled
+      color: #808080
+      svg
+        fill: #808080
+
+    &.quip-salesforce-button
+      color: #3D87F5
+
+      svg
+        width: 1rem
+        height: 1rem
+        fill: #3D87F5

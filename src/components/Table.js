@@ -6,18 +6,28 @@ import data from './../model';
 class Table extends Component {
   constructor(props) {
     super(props);
-    // this.saveCounter = this.saveCounter.bind(this);
+    this.saveCounter = this.saveCounter.bind(this);
+    this.errorCounter = this.errorCounter.bind(this);
     this.state = {
       opportunities: data,
       storedData: data,
-      saveCount: 0
+      saveCount: 0,
+      errorCount: 0
 		}
   }
 
-  // saveCounter(value) {
-  //   newCount = this.state.saveCount + value;
-  //   this.setState({ saveCount: newCount});
-  // }
+  saveCounter(value) {
+    let newCount = this.state.saveCount + value;
+    this.setState({ saveCount: newCount});
+    return this.props.updateTableState(newCount, this.state.errorCount);
+  }
+
+  errorCounter(value) {
+    let newCount = this.state.errorCount + value;
+    this.setState({ errorCount: newCount});
+    return this.props.updateTableState(this.state.saveCount, newCount)
+  }
+
   render() {
     const opportunities = this.state.opportunities;
     return (
@@ -154,7 +164,8 @@ class Table extends Component {
                 index={key}
                 opportunity={opportunities[key]}
                 storedData={this.state.storedData[key]}
-                saveCounter={this.saveCounter} />)
+                saveCounter={this.saveCounter} 
+                errorCounter={this.errorCounter} />)
             }
           </tbody>
         </table>

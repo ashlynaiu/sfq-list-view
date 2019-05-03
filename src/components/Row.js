@@ -22,6 +22,7 @@ class Row extends Component {
               storedData={this.props.storedData[key]}
               islocked={isCellLocked(fields[key])}
               saveCounter={this.props.saveCounter}
+              errorCounter={this.props.errorCounter}
               />)
           }
         </tr>

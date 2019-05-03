@@ -26,13 +26,18 @@ class Cell extends Component {
     });
   }
 
+  //Passing Props to update cell value
+  //Passing true into restore variable will reset the cell
   handleInputUpdate(inputValue, restore) {
-    //passing true into restore variable will reset the cell
-    this.setState({ field: inputValue });
     if(restore) {
+      this.setState({ field: inputValue });
       return this.restoredCell();
     }
-    return this.setState({ edited: true });
+    if(inputValue !== this.state.field) {
+      this.props.saveCounter(1);
+      this.setState({ edited: true });
+    }
+    return this.setState({ field: inputValue });
   }
 
   manageFocus = (e) => {
@@ -57,7 +62,8 @@ class Cell extends Component {
   }
 
   restoredCell() {
-    return this.setState({ 
+    this.props.saveCounter(-1);
+    return this.setState({
       edited: false,
       error: false
     });
@@ -66,9 +72,11 @@ class Cell extends Component {
   errorCell(value) {
     //Turn error state on
     if(value) {
+      this.props.errorCounter(1)
       return this.setState({ error: true});
     }
     //Turn off error state
+    this.props.errorCounter(-1)
     return this.setState({ error: false});
   }
 

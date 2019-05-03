@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import Table from './components/Table';
+import Toolbar from './components/Toolbar';
 import Icon from './components/Icon';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.updateTableState = this.updateTableState.bind(this);
+    this.state = {
+      tableStatus: 'sync'
+    }
+  }
+
+  updateTableState(changeCounter, errorCounter) {
+    if(errorCounter > 0) {
+      return this.setState({ tableStatus: 'error' });
+    }
+    if(changeCounter > 0) {
+      return this.setState({ tableStatus: 'save' });
+    }
+    return this.setState({ tableStatus: 'sync'})
+  }
   render() {
     return (
       <div className="app">
+        <Toolbar tableStatus={this.state.tableStatus} />
         <div className="listview-container slds-table_edit_container slds-is-relative">
           <h2>My Opportunities in FY20</h2>
           <span className="slds-badge">
@@ -15,7 +34,7 @@ class App extends Component {
               </span>
             </span>Opportunity
           </span>
-          <Table handleSyncState={this.handleSyncState} />
+          <Table updateTableState={this.updateTableState}/>
           </div>
       </div>
     );

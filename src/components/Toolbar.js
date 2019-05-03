@@ -2,60 +2,66 @@ import React, { Component } from 'react';
 import Icon from './Icon';
 
 class Toolbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tableState: this.props.tableState,
-    }
-  }
-
   render() {
-    let tableState = this.state.tableState;
-
+    let tableStatus = this.props.tableStatus;
     let renderSynced = ()=>{
       return (
-        <button>
-          Synced to Salesforce
+        <button className="button-disabled" disabled={true}>
+          <span className="slds-icon_container slds-current-color quip-icon" title="Description of icon when needed">
+            <Icon object="check" type="utility" size="x-small" />
+          </span>
+          <span>Synced to Salesforce</span>
         </button>
       )
     }
 
-    let renderSync = ()=>{
+    let renderSave = ()=>{
       return (
         <button>
-          Synced to Salesforce
+          <span className="slds-icon_container slds-current-color" title="Description of icon when needed">
+            <Icon object="sync" type="utility" size="x-small" />
+          </span>
+          <span>Save to Salesforce</span>
         </button>
       )
     }
 
-    // let renderError = ()=>{
-    //   return (
-    //     <button>
-    //       Error
-    //     </button>
-    //   )
-    // }
-
-    let renderSyncState = ()=>{
-      if(tableState === 'sync') {
-        return renderSynced();
-      } else if(tableState === 'save') {
-        return renderSync();
-      }
-      // } else if(tableState === 'error') {
-      //   return renderError();
-      // }
+    let renderError = ()=>{
+      return (
+        <button className="button-disabled">
+          <span className="slds-icon_container slds-current-color" title="Description of icon when needed">
+            <Icon object="error" type="utility" size="x-small" />
+          </span>
+          <span>Fix Errors to Save</span>
+        </button>
+      )
     }
 
+    let renderSyncState = ()=>{
+      if(tableStatus === 'sync') {
+        return renderSynced();
+      } else if(tableStatus === 'save') {
+        return renderSave();
+      } else if(tableStatus === 'error') {
+        return renderError();
+      }
+    }
+
+    let renderReset = ()=> {
+      return (
+        <button>Discard All Changes</button>
+      )
+    }
     return (
       <div className="listview-toolbar">
-        <button>
-          <span className="slds-icon_container slds-current-color quip-icon" title="Description of icon when needed">
+        <button className="quip-salesforce-button">
+          <span className="slds-icon_container slds-current-color" title="Description of icon when needed">
             <Icon object="salesforce1" type="utility" size="x-small" />
           </span>
           <span>Salesforce List View</span>
         </button>
         {renderSyncState()}
+        {tableStatus === 'sync' ? '' : renderReset()}
       </div>
       )
     }
