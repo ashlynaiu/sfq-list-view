@@ -62,6 +62,9 @@ class Cell extends Component {
   }
 
   restoredCell() {
+    if(this.state.error) {
+      this.props.errorCounter(-1);
+    }
     this.props.saveCounter(-1);
     return this.setState({
       edited: false,
