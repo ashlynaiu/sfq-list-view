@@ -6,7 +6,7 @@ export default [
     stage: 'Value Proposition',
     confidence: '30%',
     amount: '$800,000',
-    contact: 'John Smith'
+    contact: 'John Smith',
   },
   {
     name: 'Acme Platnium Licenses',
@@ -15,6 +15,6 @@ export default [
     stage: 'Value Proposition',
     Confidence: '30%',
     Amount: '$800,000',
-    contact: 'John Smith'
+    contact: 'Alanna Liles'
   }
 ]

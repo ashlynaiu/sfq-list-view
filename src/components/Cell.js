@@ -14,12 +14,18 @@ class Cell extends Component {
       showDialog: false,
       field: this.props.field,
       locked: this.props.islocked,
+      comment: false,
       edited: false,
       error: false,
       focus: false
 		}
   }
 
+  componentWillMount(){
+    if(this.props.field === '5/10/2019') {
+      return this.setState({ comment: true});
+    }
+  }
   handleDialog() {
     this.setState((prevState) => {
       return { showDialog: !prevState.showDialog };
@@ -88,6 +94,7 @@ class Cell extends Component {
     let isFocused = this.state.focus ? 'slds-has-focus' : '';
     let isError = this.state.error ? 'slds-has-error' : '';
     let isLocked = this.state.locked ? 'cell-locked' : '';
+    let hasComment = this.state.comment ? 'cell-comment' : '';
 
     let renderEditButton = ()=> {
       return(
@@ -102,11 +109,12 @@ class Cell extends Component {
       return (<Icon object="lock" type="utility" size="x-small"/>)
     }
     return (
-      <td aria-selected="true" className={`slds-cell-edit ${isEdited} ${isFocused} ${isError} ${isLocked}`} role="gridcell" onClick={this.manageFocus} ref={node => this.node = node }>
+      <td aria-selected="true" className={`slds-cell-edit ${isEdited} ${isFocused} ${isError} ${isLocked} ${hasComment}`} role="gridcell" onClick={this.manageFocus} ref={node => this.node = node }>
       <span className="slds-grid slds-grid_align-spread">
         <span className="slds-truncate" title={this.state.field}>{this.state.field}</span>
         {this.state.locked ? renderLock() : renderEditButton()}
       </span>
+      <img src={require(`../icons/comment.png`)} alt="This cell has a comment" />
       {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
     </td>
     )
