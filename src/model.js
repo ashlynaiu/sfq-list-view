@@ -1,20 +1,138 @@
 export default [
   {
-    name: 'Acme Platnium Licenses',
-    accountName: 'Acme',
-    closeDate: '5/10/2019',
-    stage: 'Value Proposition',
-    confidence: '30%',
-    amount: '$800,000',
-    contact: 'John Smith',
+    id: 1,
+    fields: [
+      {
+        keyName: 'Name',
+        value: 'Acme Platnium Licenses',
+        type: 'string',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Account Name',
+        value: 'Acme',
+        type: 'string',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Close Date',
+        value: '5/10/2019',
+        type: 'date',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Stage',
+        value: 'Value Proposition',
+        type: 'picklist',
+        options: ['First Call', 'Value Proposition', 'Negoiations', 'Contract Signing', 'Closed'],
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Confidence',
+        value: 30,
+        type: 'percentage',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Amount',
+        value: 800000,
+        type: 'currency',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Contact',
+        value: 'John Smith',
+        type: 'string',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      }
+    ]
   },
   {
-    name: 'Acme Platnium Licenses',
-    accountName: 'Acme',
-    closeDate: '5/10/2019',
-    stage: 'Value Proposition',
-    Confidence: '30%',
-    Amount: '$800,000',
-    contact: 'Alanna Liles'
+    id: 1,
+    fields: [
+      {
+        keyName: 'Name',
+        value: 'Acme Platnium Licenses',
+        type: 'string',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Account Name',
+        value: 'Acme',
+        type: 'string',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Close Date',
+        value: '5/10/2019',
+        type: 'date',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Stage',
+        value: 'Value Proposition',
+        type: 'picklist',
+        options: ['First Call', 'Value Proposition', 'Negoiations', 'Contract Signing', 'Closed'],
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Confidence',
+        value: 30,
+        type: 'percentage',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Amount',
+        value: 800000,
+        type: 'currency',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      },
+      {
+        keyName: 'Contact',
+        value: 'John Smith',
+        type: 'string',
+        options: '',
+        error: false,
+        locked: false,
+        comment: false
+      }
+    ]
   }
 ]

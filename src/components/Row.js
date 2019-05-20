@@ -6,11 +6,11 @@ class Row extends Component {
     const fields = this.props.opportunity;
 
     //hack to check confidence
-    let isCellLocked = (value)=> {
-      if(value.includes('%')) {
-        return true;
-      }
-    }
+    // let isCellLocked = (value)=> {
+    //   if(value.includes('%')) {
+    //     return true;
+    //   }
+    // }
 
     return (
         <tr aria-selected="false" className="slds-hint-parent">
@@ -18,9 +18,9 @@ class Row extends Component {
             .keys(fields)
             .map(key => <Cell
               key={key}
-              field={fields[key]}
+              field={fields[key].value}
               storedData={this.props.storedData[key]}
-              islocked={isCellLocked(fields[key])}
+              islocked={fields[key].locked}
               saveCounter={this.props.saveCounter}
               errorCounter={this.props.errorCounter}
               />)

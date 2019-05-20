@@ -163,9 +163,9 @@ class Table extends Component {
               .map(key => <Row
                 key={key}
                 index={key}
-                opportunity={opportunities[key]}
-                storedData={this.state.storedData[key]}
-                saveCounter={this.saveCounter} 
+                opportunity={opportunities[key].fields}
+                storedData={this.state.storedData[key].fields}
+                saveCounter={this.saveCounter}
                 errorCounter={this.errorCounter} />)
             }
           </tbody>
