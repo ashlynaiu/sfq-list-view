@@ -96,7 +96,7 @@ class Dialog extends Component {
             </label>
             <div className="slds-form-element__control slds-grow slds-grid">
               <input className="slds-input" id="company-01" required="" type="text" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.onKeyPress}/>
-              <button onClick={this.restoreValue} className={`listview-restore ${disableRestore}`} disabled={!this.state.edited}><Icon object="refresh" type="action" size="x-small" editable={true} /></button>
+              <button onClick={this.restoreValue} className={`listview-restore ${disableRestore}`} disabled={!this.state.edited}><Icon object="undo" type="utility" size="x-small" /></button>
             </div>
             {this.state.error ? errorWarning() : ''}
           </div>
