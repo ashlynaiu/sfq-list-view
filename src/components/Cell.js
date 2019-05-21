@@ -13,7 +13,7 @@ class Cell extends Component {
     this.state = {
       showDialog: false,
       field: this.props.field,
-      locked: this.props.islocked,
+      locked: this.props.isLocked,
       comment: false,
       edited: false,
       error: false,

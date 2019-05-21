@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Icon from './Icon';
+import Input from './Input';
 
 class Dialog extends Component {
   constructor(props) {
     super(props);
-    //this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
     this.restoreValue = this.restoreValue.bind(this);
     this.commitChangetoCell = this.commitChangetoCell.bind(this);
+    this.handleErrorState = this.handleErrorState.bind(this);
+    this.dialogChangeHandler = this.dialogChangeHandler.bind(this);
     this.state = {
       inputValue: this.props.data,
       edited: this.props.isDraft,
@@ -40,30 +41,28 @@ class Dialog extends Component {
     }
   }
 
-  //Handle onChange to update state to edited is ture
-  handleChange(event) {
-    if(event.target.value === '') {
-      this.handleError(event.target.value);
-    }
-    if(this.state.error && event.target.value !== '') {
-      this.setState({ error: false });
-      this.props.errorCell(false);
-    }
+  dialogChangeHandler(value) {
     return this.setState({
       edited: true,
-      inputValue: event.target.value
+      inputValue: value
     })
   }
-
+    
   //User is done making changes and needs to save to table cell
   commitChangetoCell() {
     this.props.handleInputUpdate(this.state.inputValue);
     this.props.handleDialog();
   }
 
-  handleError(value) {
-    this.props.errorCell(true);
-    return this.setState({ error: true })
+  handleErrorState(state) {
+    //Set Error State
+    if(state) {
+      this.props.errorCell(true);
+      return this.setState({ error: true })
+    }
+    //Clear Error State
+    this.props.errorCell(false);
+    return this.setState({ error: false });
   }
 
   //Reset the component
@@ -95,7 +94,7 @@ class Dialog extends Component {
               <span className="slds-assistive-text">Company</span>
             </label>
             <div className="slds-form-element__control slds-grow slds-grid">
-              <input className="slds-input" id="company-01" required="" type="text" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.onKeyPress}/>
+              <Input data={this.state.inputValue} onKeyPress={this.onKeyPress} errorCell={this.props.errorCell} error={this.state.error} handleErrorState={this.handleErrorState} dialogChangeHandler={this.dialogChangeHandler} />
               <button onClick={this.restoreValue} className={`listview-restore ${disableRestore}`} disabled={!this.state.edited}><Icon object="refresh" type="action" size="x-small" editable={true} /></button>
             </div>
             {this.state.error ? errorWarning() : ''}

@@ -44,7 +44,7 @@ export default [
         type: 'percentage',
         options: '',
         error: false,
-        locked: false,
+        locked: true,
         comment: false
       },
       {
@@ -112,7 +112,7 @@ export default [
         type: 'percentage',
         options: '',
         error: false,
-        locked: false,
+        locked: true,
         comment: false
       },
       {
