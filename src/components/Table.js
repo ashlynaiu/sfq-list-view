@@ -25,7 +25,6 @@ class Table extends Component {
   errorCounter(value) {
     let newCount = this.state.errorCount + value;
     this.setState({ errorCount: newCount});
-    console.log(newCount);
     return this.props.updateTableState(this.state.saveCount, newCount)
   }
 

@@ -11,7 +11,7 @@ class Dialog extends Component {
     this.handleErrorState = this.handleErrorState.bind(this);
     this.dialogChangeHandler = this.dialogChangeHandler.bind(this);
     this.state = {
-      inputValue: this.props.data,
+      inputValue: this.props.input,
       edited: this.props.isDraft,
       error: this.props.hasError
     }
@@ -47,7 +47,7 @@ class Dialog extends Component {
       inputValue: value
     })
   }
-    
+
   //User is done making changes and needs to save to table cell
   commitChangetoCell() {
     this.props.handleInputUpdate(this.state.inputValue);
@@ -94,7 +94,15 @@ class Dialog extends Component {
               <span className="slds-assistive-text">Company</span>
             </label>
             <div className="slds-form-element__control slds-grow slds-grid">
-              <Input data={this.state.inputValue} onKeyPress={this.onKeyPress} errorCell={this.props.errorCell} error={this.state.error} handleErrorState={this.handleErrorState} dialogChangeHandler={this.dialogChangeHandler} />
+              <Input
+                input={this.state.inputValue}
+                staticData={this.props.staticData}
+                error={this.state.error}
+                type={this.props.type}
+                options={this.props.options} 
+                onKeyPress={this.onKeyPress}
+                handleErrorState={this.handleErrorState}
+                dialogChangeHandler={this.dialogChangeHandler} />
               <button onClick={this.restoreValue} className={`listview-restore ${disableRestore}`} disabled={!this.state.edited}><Icon object="refresh" type="action" size="x-small" editable={true} /></button>
             </div>
             {this.state.error ? errorWarning() : ''}

@@ -11,9 +11,8 @@ class Row extends Component {
             .keys(fields)
             .map(key => <Cell
               key={key}
-              field={fields[key].value}
+              data={fields[key]}
               storedData={this.props.storedData[key].value}
-              isLocked={fields[key].locked}
               saveCounter={this.props.saveCounter}
               errorCounter={this.props.errorCounter}
               />)

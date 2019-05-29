@@ -12,8 +12,7 @@ class Cell extends Component {
     this.errorCell = this.errorCell.bind(this);
     this.state = {
       showDialog: false,
-      field: this.props.field,
-      locked: this.props.isLocked,
+      field: this.props.data.value,
       comment: false,
       edited: false,
       error: false,
@@ -90,10 +89,11 @@ class Cell extends Component {
   }
 
   render() {
+    const locked = this.props.data.locked;
     let isEdited = this.state.edited ? 'slds-is-edited' : '';
     let isFocused = this.state.focus ? 'slds-has-focus' : '';
     let isError = this.state.error ? 'slds-has-error' : '';
-    let isLocked = this.state.locked ? 'cell-locked' : '';
+    let isLocked = locked ? 'cell-locked' : '';
     let hasComment = this.state.comment ? 'cell-comment' : '';
 
     let renderEditButton = ()=> {
@@ -112,10 +112,10 @@ class Cell extends Component {
       <td aria-selected="true" className={`slds-cell-edit ${isEdited} ${isFocused} ${isError} ${isLocked} ${hasComment}`} role="gridcell" onClick={this.manageFocus} ref={node => this.node = node }>
       <span className="slds-grid slds-grid_align-spread">
         <span className="slds-truncate" title={this.state.field}>{this.state.field}</span>
-        {this.state.locked ? renderLock() : renderEditButton()}
+        {locked ? renderLock() : renderEditButton()}
       </span>
       <img src={require(`../icons/comment.png`)} alt="This cell has a comment" />
-      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
+      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} input={this.state.field} staticData={this.props.data} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
     </td>
     )
   }
