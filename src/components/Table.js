@@ -25,7 +25,6 @@ class Table extends Component {
   errorCounter(value) {
     let newCount = this.state.errorCount + value;
     this.setState({ errorCount: newCount});
-    console.log(newCount);
     return this.props.updateTableState(this.state.saveCount, newCount)
   }
 
@@ -37,7 +36,7 @@ class Table extends Component {
           <thead>
             <tr className="slds-line-height_reset">
               <th aria-label="Name" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col">
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Name">Name</span>
@@ -54,7 +53,7 @@ class Table extends Component {
                 </div>
               </th>
               <th aria-label="Account Name" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col">
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Account Name">Account Name</span>
@@ -71,7 +70,7 @@ class Table extends Component {
                 </div>
               </th>
               <th aria-label="Close Date" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col">
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Close Date">Close Date</span>
@@ -88,7 +87,7 @@ class Table extends Component {
                 </div>
               </th>
               <th aria-label="Stage" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col">
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Stage">Stage</span>
@@ -105,7 +104,7 @@ class Table extends Component {
                 </div>
               </th>
               <th aria-label="Confidence" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col">
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Confidence">Confidence</span>
@@ -122,7 +121,7 @@ class Table extends Component {
                 </div>
               </th>
               <th aria-label="Amount" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col" >
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Amount">Amount</span>
@@ -139,7 +138,7 @@ class Table extends Component {
                 </div>
               </th>
               <th aria-label="Contact" aria-sort="none" className="slds-is-resizable slds-is-sortable" scope="col">
-                <a className="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button"  tabIndex="0">
+                <a className="slds-th__action slds-text-link_reset" href="/" role="button"  tabIndex="0">
                   <span className="slds-assistive-text">Sort by: </span>
                   <div className="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span className="slds-truncate" title="Contact">Contact</span>
@@ -163,9 +162,9 @@ class Table extends Component {
               .map(key => <Row
                 key={key}
                 index={key}
-                opportunity={opportunities[key]}
-                storedData={this.state.storedData[key]}
-                saveCounter={this.saveCounter} 
+                opportunity={opportunities[key].fields}
+                storedData={this.state.storedData[key].fields}
+                saveCounter={this.saveCounter}
                 errorCounter={this.errorCounter} />)
             }
           </tbody>

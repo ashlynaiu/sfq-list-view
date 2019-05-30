@@ -10,22 +10,30 @@ class Cell extends Component {
     this.manageFocus = this.manageFocus.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.errorCell = this.errorCell.bind(this);
+
     this.state = {
       showDialog: false,
-      field: this.props.field,
-      locked: this.props.islocked,
-      comment: false,
+      field: this.props.data.value,
+      comment: this.props.data.comment,
       edited: false,
       error: false,
       focus: false
 		}
   }
 
-  componentWillMount(){
-    if(this.props.field === '5/10/2019') {
-      return this.setState({ comment: true});
+  //NPM install input mask 
+  componentDidMount(){
+    if (this.props.data.type === 'currency') {
+      let currencyValue = this.formatValue(this.state.field);
+      this.setState({ field: currencyValue });
     }
   }
+
+  //Currency Helper
+  formatValue(value) {
+    return `$${(value / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+  }
+
   handleDialog() {
     this.setState((prevState) => {
       return { showDialog: !prevState.showDialog };
@@ -90,10 +98,11 @@ class Cell extends Component {
   }
 
   render() {
+    const locked = this.props.data.locked;
     let isEdited = this.state.edited ? 'slds-is-edited' : '';
     let isFocused = this.state.focus ? 'slds-has-focus' : '';
     let isError = this.state.error ? 'slds-has-error' : '';
-    let isLocked = this.state.locked ? 'cell-locked' : '';
+    let isLocked = locked ? 'cell-locked' : '';
     let hasComment = this.state.comment ? 'cell-comment' : '';
 
     let renderEditButton = ()=> {
@@ -112,10 +121,10 @@ class Cell extends Component {
       <td aria-selected="true" className={`slds-cell-edit ${isEdited} ${isFocused} ${isError} ${isLocked} ${hasComment}`} role="gridcell" onClick={this.manageFocus} ref={node => this.node = node }>
       <span className="slds-grid slds-grid_align-spread">
         <span className="slds-truncate" title={this.state.field}>{this.state.field}</span>
-        {this.state.locked ? renderLock() : renderEditButton()}
+        {locked ? renderLock() : renderEditButton()}
       </span>
       <img src={require(`../icons/comment.png`)} alt="This cell has a comment" />
-      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} data={this.state.field} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
+      {this.state.showDialog ? <Dialog handleDialog={this.handleDialog} input={this.state.field} staticData={this.props.data} isDraft={this.state.edited} hasError={this.state.error} handleInputUpdate={this.handleInputUpdate} storedData={this.props.storedData} errorCell={this.errorCell} /> : null}
     </td>
     )
   }
