@@ -10,21 +10,30 @@ class Cell extends Component {
     this.manageFocus = this.manageFocus.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.errorCell = this.errorCell.bind(this);
+
     this.state = {
       showDialog: false,
       field: this.props.data.value,
-      comment: false,
+      comment: this.props.data.comment,
       edited: false,
       error: false,
       focus: false
 		}
   }
 
-  componentWillMount(){
-    if(this.props.field === '5/10/2019') {
-      return this.setState({ comment: true});
+  //NPM install input mask 
+  componentDidMount(){
+    if (this.props.data.type === 'currency') {
+      let currencyValue = this.formatValue(this.state.field);
+      this.setState({ field: currencyValue });
     }
   }
+
+  //Currency Helper
+  formatValue(value) {
+    return `$${(value / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+  }
+
   handleDialog() {
     this.setState((prevState) => {
       return { showDialog: !prevState.showDialog };

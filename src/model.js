@@ -27,7 +27,7 @@ export default [
         options: '',
         error: false,
         locked: false,
-        comment: false
+        comment: true
       },
       {
         keyName: 'Stage',
@@ -86,7 +86,7 @@ export default [
         options: '',
         error: false,
         locked: false,
-        comment: false
+        comment: true
       },
       {
         keyName: 'Close Date',

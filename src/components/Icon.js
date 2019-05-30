@@ -34,9 +34,10 @@ class Icon extends Component {
     let renderUtility = () => {
         let isSortable = (this.props.sortable) ? 'slds-is-sortable__icon' : '';
         let isEditable = (this.props.editable) ? 'slds-button__icon_edit' : '';
+        let isRightInputIcon = this.props.rightInputIcon ? 'slds-input__icon slds-input__icon_right' : '';
 
         return (
-            <span className={`slds-icon_container slds-icon-utility-${object} ${isSortable} ${isEditable}`} title="">
+            <span className={`slds-icon_container slds-icon-utility-${object} ${isSortable} ${isEditable} ${isRightInputIcon}`} title="">
                 <svg className={`slds-icon slds-icon-text-default slds-icon_${size} ${isSortable}`} aria-hidden="true">
                     <use xlinkHref={`${UtilityIcons}#${object}`}></use>
                 </svg>
@@ -66,7 +67,8 @@ class Icon extends Component {
 }
 Icon.defaultProps = {
   sortable: false,
-  editable: false
+  editable: false,
+  rightInputIcon: false
 };
 
 export default Icon;

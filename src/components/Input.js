@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Icon from './Icon';
+import Icon from './Icon';
 
 class Input extends Component {
   constructor(props) {
@@ -9,10 +9,7 @@ class Input extends Component {
       inputValue: this.props.input,
     }
   }
-  // componentDidMount() {
-  //   console.log(this.props.type);
-  // }
-  //Handle onChange to update state to edited is ture
+
   handleChange(event) {
     if(event.target.value === '') {
       this.props.handleErrorState(true);
@@ -27,7 +24,8 @@ class Input extends Component {
   render() {
     const type = this.props.staticData.type;
     const options = this.props.staticData.options;
-    console.log(options);
+    let hasDate = type === 'date' ? 'slds-input-has-icon slds-input-has-icon_right' : '';
+
     let isSelect = ()=> {
       return (
         <div className="slds-select_container slds-grow">
@@ -49,10 +47,28 @@ class Input extends Component {
         <input className="slds-input" id="company-01" required="" type="text" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.props.onKeyPress}/>
       )
     }
+
+    let isDate = ()=> {
+      return (
+        <span>
+          <Icon object="event" type="utility" size="x-small" rightInputIcon={true} />
+          <input type="text" id="text-input-id-1" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.props.onKeyPress} className="slds-input" />
+        </span>
+      )
+    }
+
+    let isCurrency = ()=> {
+      return (
+        <input className="slds-input" id="company-01" required="" type="string" pattern="^-?[0-9]\d*\.?\d*$" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.props.onKeyPress}/>
+      )
+    }
+
     return(
-      <div className="slds-form-element__control slds-grow slds-grid">
+      <div className={`slds-form-element__control slds-grow slds-grid1 ${hasDate}`}>
         {type === 'string' ? isString() : ''}
         {type === 'picklist' ? isSelect() : ''}
+        {type === 'date' ? isDate() : ''}
+        {type === 'currency' ? isCurrency() : ''}
       </div>
     );
   }
