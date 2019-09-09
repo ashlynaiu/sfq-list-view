@@ -49,7 +49,7 @@ class Toolbar extends Component {
 
     let renderReset = ()=> {
       return (
-        <button>Discard All Changes</button>
+        <button onClick={this.props.resetAll}>Discard All Changes</button>
       )
     }
     return (

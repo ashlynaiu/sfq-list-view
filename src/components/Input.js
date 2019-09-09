@@ -63,6 +63,7 @@ class Input extends Component {
       )
     }
 
+    console.log(this.state.inputValue);
     return(
       <div className={`slds-form-element__control slds-grow slds-grid1 ${hasDate}`}>
         {type === 'string' ? isString() : ''}

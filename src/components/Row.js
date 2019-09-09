@@ -3,7 +3,7 @@ import Cell from './Cell';
 
 class Row extends Component {
   render() {
-    const fields = this.props.opportunity;
+    let fields = this.props.opportunity;
 
     return (
         <tr aria-selected="false" className="slds-hint-parent">

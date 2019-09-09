@@ -1,35 +1,11 @@
 import React, { Component } from 'react';
 import Icon from './Icon';
 import Row from './Row';
-import data from './../model';
 
 class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.saveCounter = this.saveCounter.bind(this);
-    this.errorCounter = this.errorCounter.bind(this);
-    this.state = {
-      opportunities: data,
-      storedData: data,
-      saveCount: 0,
-      errorCount: 0
-		}
-  }
-
-  saveCounter(value) {
-    let newCount = this.state.saveCount + value;
-    this.setState({ saveCount: newCount});
-    return this.props.updateTableState(newCount, this.state.errorCount);
-  }
-
-  errorCounter(value) {
-    let newCount = this.state.errorCount + value;
-    this.setState({ errorCount: newCount});
-    return this.props.updateTableState(this.state.saveCount, newCount)
-  }
-
   render() {
-    const opportunities = this.state.opportunities;
+    let opportunities = this.props.opportunities;
+
     return (
       <div className="slds-table_edit_container slds-is-relative">
         <table aria-multiselectable="true" className="slds-table slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols listview" role="grid">
@@ -163,9 +139,9 @@ class Table extends Component {
                 key={key}
                 index={key}
                 opportunity={opportunities[key].fields}
-                storedData={this.state.storedData[key].fields}
-                saveCounter={this.saveCounter}
-                errorCounter={this.errorCounter} />)
+                storedData={this.props.storedData[key].fields}
+                saveCounter={this.props.saveCounter}
+                errorCounter={this.props.errorCounter} />)
             }
           </tbody>
         </table>
